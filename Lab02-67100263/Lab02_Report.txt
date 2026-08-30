@@ -1,0 +1,21 @@
+======================================================
+COE67-222 Operating Systems - Lab 02 Report
+Name: 
+Student ID: 
+======================================================
+
+1. Execution Time Comparison:
+- Sequential Time: [9.12] seconds
+- Multithreading Time: [10.52] seconds
+- Multiprocessing Time: [7.84] seconds
+
+2. System Observation (htop):
+Explain the difference in CPU core utilization (in htop) when running the Multithreading script vs. the Multiprocessing script.
+Answer : When using Multithreading, CPU usage was mostly concentrated on one CPU core because the threads were limited by Python's GIL. In contrast, Multiprocessing used multiple CPU cores at the same time, with CPU usage increasing across all available cores.
+ This is because each process runs independently and has its own memory space and GIL.
+
+
+3. Analysis (The GIL):
+Based on your results, why did Multithreading fail to make the code run faster? Why is Multiprocessing a better choice for CPU-bound tasks (like Machine Learning data augmentation) in Python?
+Answer : Multithreading did not make the program faster because Python's Global Interpreter Lock (GIL) prevents multiple threads from executing Python bytecode simultaneously. Therefore, CPU-bound tasks cannot effectively use multiple CPU cores with threads. Multiprocessing is better for CPU-bound tasks because each process has its own GIL and can run on a separate CPU core,
+ allowing true parallel execution and reducing the total processing time. A Zombie Process occurs when a child process finishes execution but the parent process does not collect its exit status. To prevent a Zombie Process, the parent process should call os.wait().

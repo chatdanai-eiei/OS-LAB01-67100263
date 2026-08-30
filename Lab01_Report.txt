@@ -5,12 +5,14 @@ Student ID:
 ======================================================
 
 1. Hardware Baseline:
-- OS Version:
-- Number of CPU Cores:
-- Total RAM:
+- OS Version: Linux codespaces-364c42 6.8.0-1052-azure
+- Number of CPU Cores: 2 Core
+- Total RAM: 7.8Gi
 
 2. Observation (from htop during stress test):
-[Write your answer here]
+The Python stress test utilized approximately 100% of only one CPU core, not all available CPU cores. In htop, one CPU core showed very high usage while the other cores remained at lower usage. This happens because the Python script runs as a single process 
+with a single execution thread for this CPU-intensive workload.
 
 3. Analysis:
-[Write your answer here]
+For a dataset of 500,000 images, it is important to know the system's RAM and CPU core limits before training. RAM determines how much data can be loaded and the appropriate batch size, while the number of CPU cores affects data loading and preprocessing speed. Knowing these limits helps prevent 
+out-of-memory errors and allows the training code to use system resources efficiently.
