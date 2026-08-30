@@ -1,7 +1,7 @@
 ======================================================
 COE67-222 Operating Systems - Lab 02 Report
-Name: 
-Student ID: 
+Name: Chatdanai Nasen
+Student ID: 67100263
 ======================================================
 
 1. Execution Time Comparison:
