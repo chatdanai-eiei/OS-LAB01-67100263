@@ -1,6 +1,6 @@
 # ==========================================
 # OS-Lab 01: CPU Stress Test
-# Student ID: [Enter your ID here]
+# Student ID: [67100263]
 # ==========================================
 import time
 import math
