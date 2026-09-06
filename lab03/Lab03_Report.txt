@@ -1,0 +1,44 @@
+======================================================
+COE67-222 Operating Systems - Lab 03 Report
+Name: Chatdanai Nasen
+Student ID: 67100263
+======================================================
+
+1. The Race Condition (Phase 2):
+
+ANS:The final weight is less than the expected value because both
+threads access and modify the same shared variable at the same
+time without synchronization. One thread may read the value,
+then the OS Scheduler switches to another thread before the
+first thread writes the updated value. The second thread may
+read the same old value and overwrite the first thread's update.
+As a result, some increments are lost and the actual value is
+less than the expected value of 200.
+
+2. Mutex vs. Semaphore (Phase 3):
+
+ANS: The mutex is used to protect the critical section of the shared
+buffer. It ensures that only one thread can access or modify the
+buffer at a time.
+The empty semaphore counts the number of empty slots available
+in the buffer. The Producer must wait when the buffer is full.
+The full semaphore counts the number of filled slots in the
+buffer. The Consumer must wait when there is no data available.
+We cannot use only a Mutex for everything because a Mutex only
+provides mutual exclusion. It does not keep track of how many
+buffer slots are empty or how many items are available. The
+semaphores are needed to coordinate the Producer and Consumer
+based on the buffer's available space and data.
+
+3. Deadlock Awareness:
+
+ANS: If we swapped the two lines and used mutex.acquire() before
+empty.acquire(), a deadlock could occur when the buffer is
+completely full.
+The Producer would acquire the mutex and then wait for an empty
+slot. However, because the buffer is full, the Producer would
+remain blocked while still holding the mutex. The Consumer would
+then need to acquire the same mutex to remove an item from the
+buffer, but it could not acquire it because the Producer is
+holding it. Therefore, both processes would wait indefinitely,
+causing a Deadlock.
