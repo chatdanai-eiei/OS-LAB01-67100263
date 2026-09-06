@@ -1,0 +1,52 @@
+======================================================
+COE67-222 Operating Systems - Lab 04 Report
+Name: Chatdanai Nasen
+Student ID: 67100263
+======================================================
+
+1. The Deadlock (Phase 2):
+
+ANS: Model A first acquires GPU 0 and then waits to acquire GPU 1.
+At the same time, Model B first acquires GPU 1 and then waits
+to acquire GPU 0.
+Model A cannot continue because Model B is holding GPU 1.
+Model B cannot continue because Model A is holding GPU 0.
+Therefore, both models are waiting for a resource held by the
+other model. This creates a Circular Wait condition and causes
+a Deadlock.
+
+2. The Solution (Phase 3):
+
+ANS: Model B was changed so that it also requests GPU 0 first and
+GPU 1 second, following the same Resource Hierarchy as Model A.
+Because both models request the resources in the same order,
+one model must acquire GPU 0 first while the other waits.
+The first model can then acquire GPU 1, finish its work, and
+release both resources. The second model can then continue.
+Therefore, neither model holds GPU 1 while waiting for GPU 0,
+so the Circular Wait condition is broken and the Deadlock is
+avoided.
+
+3. Starvation vs Deadlock (Phase 4):
+
+ANS: The final output of the Starvation script is different from
+the Deadlock script because the system continues running in
+the Starvation case. The Greedy Models acquire the shared
+resource many times, while the Polite Model gets fewer chances
+to access it. In the Deadlock script, both models become stuck
+waiting for each other's resources and the program freezes.
+Aging can help the Polite_Model by gradually increasing its
+priority when it has been waiting for a long time. Eventually,
+its priority becomes high enough to receive CPU time and access
+the resource, giving it a fairer chance to execute.
+
+4. Deadlock Detection & Recovery (Phase 3.3):
+
+ANS: The timeout parameter simulates Deadlock Detection by limiting
+how long Model A can wait for GPU 1. If Model A cannot acquire
+GPU 1 within the TIMEOUT period of 2 seconds, the system assumes
+that a Deadlock has occurred.
+When the Deadlock is detected, Model A releases GPU 0 by calling
+gpu_0_lock.release(). This allows Model B, which was waiting for
+GPU 0, to acquire the resource and continue its execution.
+Therefore, the system can recover without remaining frozen.
